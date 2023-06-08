@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.or"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Generated Invoice</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+  <h3>Summary</h3>
+  <hr />
+  <div>
+      <h3>Order Number: <span th:text="${invoiceNumber}"></span></h3>
+      <hr />
+      <h3>Items Purchased</h3>
+      <table>
+          <tr>
+              <th>PRODUCT NAME</th>
+              <th>PRODUCT PRICE</th>
+              <th>QUANTITY</th>
+          </tr>
+          <tr th:each="p: ${products}">
+              <td th:text="${p.productName}"></td>
+              <td th:text="${p.productPrice}"></td>
+              <td th:text="${p.quantity}"></td>
+          </tr>
+      </table>
+      <hr />
+      <h2>Sub-Total: <span th:text="${subTotal}"></span></h2>
+      <h3>Taxes: <span th:text="|$${#numbers.formatDecimal(total - subTotal, 1, 'DEFAULT', 2, 'DEFAULT')}|"></span></h3>
+      <hr />
+      <h2>Total Amount Due: <span th:text="|$${#numbers.formatDecimal(total, 1, 'DEFAULT', 2, 'DEFAULT')}|"></span></h2>
+      <p>Thanking you for shopping with us !!!</p>
+      <a href="/">Home</a>
+  </div>
+</body>
+</html>

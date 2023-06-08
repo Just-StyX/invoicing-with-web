@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.or"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+</head>
+<body>
+<h1>Products</h1>
+<h2>View Products</h2>
+<table>
+    <tr>
+        <th>PRODUCT NAME</th>
+        <th>PRODUCT PRICE</th>
+        <th>QUANTITY</th>
+    </tr>
+    <tr th:each="p: ${products}">
+        <td th:text="${p.productName}"></td>
+        <td th:text="${p.productPrice}"></td>
+        <td th:text="${p.quantity}"></td>
+    </tr>
+</table>
+<h2>Add Product</h2>
+<form action="/invoice" method="post">
+    <label for="productName">Name: </label>
+    <input type="text" name="productName">
+    <label for="productPrice">Price: </label>
+    <input type="number" name="productPrice">
+    <label for="quantity">Quantity: </label>
+    <input type="number" name="quantity">
+    <button>Submit</button>
+</form>
+<a href="/generate-invoice"><button>Generate Invoice</button></a>
+<a href="/invoice?logout">Log Out</a>
+</body>
+</html>
